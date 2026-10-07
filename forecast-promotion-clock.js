@@ -1,6 +1,7 @@
 export const PROMOTION_VISIBLE_MS = 5000;
 export const PROMOTION_CYCLE_MS = 60000;
 export const PROMOTION_FIRST_MS = 1800;
+const DISMISS_KEY = 'forecast-promotion-dismissed-red-green';
 /** Viewport changes and hidden tabs cancel timers; no queued bursts on return. */
 export function mountPromotion(setVisible, win, doc) {
     const wide = win.matchMedia('(min-width: 1440px)');
@@ -8,7 +9,7 @@ export function mountPromotion(setVisible, win, doc) {
     let stopped = false;
     let dismissed = false;
     try {
-        dismissed = win.sessionStorage.getItem('forecast-promotion-dismissed') === '1';
+        dismissed = win.sessionStorage.getItem(DISMISS_KEY) === '1';
     }
     catch { /* Storage is optional. */ }
     const cancel = () => { if (timer !== undefined)
@@ -46,7 +47,7 @@ export function mountPromotion(setVisible, win, doc) {
     restart();
     return {
         dismiss() { dismissed = true; cancel(); setVisible(false); try {
-            win.sessionStorage.setItem('forecast-promotion-dismissed', '1');
+            win.sessionStorage.setItem(DISMISS_KEY, '1');
         }
         catch { /* Optional. */ } },
         dispose() { stopped = true; cancel(); wide.removeEventListener('change', restart); doc.removeEventListener('visibilitychange', restart); },
