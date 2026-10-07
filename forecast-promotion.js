@@ -1,0 +1,1 @@
+import {mountPromotion} from '/forecast-promotion-clock.js';const host=document.querySelector('[data-forecast-promotion]');if(host){const controller=mountPromotion(v=>{host.hidden=!v},window,document);host.querySelector('button').addEventListener('click',()=>controller.dismiss());window.addEventListener('pagehide',()=>controller.dispose(),{once:true});}
