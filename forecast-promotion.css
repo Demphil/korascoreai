@@ -30,7 +30,16 @@
 body:has(.forecast-promo-host[data-static-page])>header,body:has(.forecast-promo-host[data-static-page])>main,body:has(.forecast-promo-host[data-static-page])>footer{position:relative;z-index:1}
 .website-register{display:inline-flex;align-items:center;justify-content:center;gap:7px;flex-shrink:0;min-height:44px;padding:9px 15px;margin:0 5px;border:1px solid #58e1a989;border-right-color:#e34a5889;border-radius:12px;color:#fff;background:linear-gradient(115deg,#087353,#13513e 55%,#9c2432);font:700 13px/1.3 system-ui,sans-serif;cursor:pointer;box-shadow:-3px 0 12px #27dc9520,3px 0 12px #e3374620;white-space:nowrap}
 .website-register:hover{box-shadow:-3px 0 16px #27dc9540,3px 0 16px #e3374640}.website-register:focus-visible{outline:3px solid #ffe18c;outline-offset:3px}
-@media(max-width:700px){.website-register{max-width:92px;padding:8px;margin:0 2px;font-size:11px;white-space:normal}.website-register svg{display:none}}
+@media(max-width:700px){.website-register{max-width:130px;padding:6px 8px;margin:0 2px;font-size:11px;white-space:normal;gap:5px}.website-register>div{flex-shrink:0}}
+.website-paypal-packs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:100%;font-family:system-ui,sans-serif}
+.website-paypal-pack{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;min-height:142px;padding:14px 8px;border:1px solid #72e5b087;border-top-color:#c1f8dfbb;border-right-color:#ef718180;border-radius:16px;background:linear-gradient(140deg,#186256e6,#163241f2 60%,#402d42ed);color:#f3fff9;cursor:pointer;font-family:inherit;box-shadow:inset 0 1px 0 #ffffff24,0 5px 14px #081d2928}
+.website-paypal-pack strong{font-size:17px}.website-paypal-pack>span:first-of-type{font-size:19px;color:#ffe5a6;font-weight:800}.website-paypal-pack small{font-size:11px;color:#dceae7}
+.website-paypal-pack:hover:not(:disabled){border-color:#96f5c4;box-shadow:0 0 15px #31d39630}.website-paypal-pack:disabled,.website-payment-action:disabled{opacity:.6;cursor:wait}
+.website-paypal-wordmark{display:inline-block;font-weight:800;font-style:italic;font-size:21px;letter-spacing:-.4px;color:#dce9ff}.website-paypal-wordmark>span{color:#6bc5ff}
+.website-paypal-pack:focus-visible,.website-payment-action:focus-visible{outline:3px solid #ffe18c;outline-offset:3px}
+.website-payment-action{min-height:44px;padding:9px 14px;border:1px solid #72e5b080;border-radius:11px;background:#173946d9;color:#b2f8d7;font:700 13px system-ui,sans-serif;cursor:pointer}
+.website-paypal-order{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:13px;border:1px solid #a2dacc55;border-radius:12px;background:#12313dcc;color:#ecfff8;font:13px/1.5 system-ui,sans-serif}.website-paypal-order>strong,.website-paypal-order>span{flex-basis:100%}
+@media(max-width:380px){.website-paypal-packs{gap:6px}.website-paypal-pack strong{font-size:14px}.website-paypal-pack>span:first-of-type{font-size:17px}}
 @media(min-width:1440px) and (prefers-reduced-motion:no-preference){.forecast-promo-screen{animation:forecast-screen-float 7s ease-in-out infinite}}
 @keyframes forecast-screen-float{0%,100%{transform:perspective(700px) rotateY(-6deg) translateY(0)}50%{transform:perspective(700px) rotateY(-3deg) translateY(-3px)}}
 
