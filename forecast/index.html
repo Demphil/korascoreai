@@ -1,7 +1,35 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head><script src="/paypal-return.js"></script>
-    <meta charset="utf-8" />
+  <head><meta charset="utf-8"/><script id="website-language-entry">(function redirectLanguageEntry(browser, config) {
+  const url = new URL(browser.location.href);
+  const section = url.pathname.replace(/\/$/, '') || '/';
+  if (!config.sections.includes(section)) return null;
+  const supported = value => typeof value === 'string'
+    ? config.languages.find(language => language === value.toLowerCase().split(/[-_]/)[0])
+    : undefined;
+  let language;
+  for (const storage of ['localStorage', 'sessionStorage']) {
+    try { language = supported(browser[storage].getItem(config.key)); } catch { /* Storage can be blocked. */ }
+    if (language) break;
+  }
+  if (!language) {
+    const preferences = browser.navigator.languages?.length ? browser.navigator.languages : [browser.navigator.language];
+    language = preferences.map(supported).find(Boolean);
+  }
+  if (!language) {
+    let zone;
+    try { zone = browser.Intl.DateTimeFormat().resolvedOptions().timeZone; } catch { /* English remains the fallback. */ }
+    if (/^(Africa\/(Casablanca|Algiers|Tunis|Cairo|Tripoli)|Asia\/(Riyadh|Dubai|Qatar|Kuwait|Baghdad|Beirut|Amman))$/.test(zone ?? '')) language = 'ar';
+    else if (zone === 'Europe/Paris') language = 'fr';
+    else if (zone === 'Europe/Madrid' || zone?.startsWith('Atlantic/Canary')) language = 'es';
+    else language = 'en';
+  }
+  const destination = `/${language}${section === '/' ? '/' : `${section}/`}${url.search}${url.hash}`;
+  if (destination === `${url.pathname}${url.search}${url.hash}`) return null;
+  browser.location.replace(destination);
+  return destination;
+})(window,{"sections":["/","/live-scores","/leagues","/forecast","/insights","/favorites"],"languages":["ar","en","fr","es"],"key":"korascoreai:website-language:v1"});</script><script src="/paypal-return.js"></script>
+    
     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>توقعات كرة القدم بالذكاء الاصطناعي | KoraScoreAi Forecast</title><meta name="description" content="افهم المباراة قبل بدايتها مع Forecast: إحصائيات وأخبار من مصادرها، مراجعة تكتيكية واحتمالات النتيجة، مع تقرير محفوظ في حسابك عند صدوره."/><meta name="robots" content="index,follow,max-image-preview:large"/><link rel="canonical" href="https://korascoreai.com/forecast/"/><meta property="og:type" content="website"/><meta property="og:site_name" content="KoraScoreAi"/><meta property="og:title" content="توقعات كرة القدم بالذكاء الاصطناعي | KoraScoreAi Forecast"/><meta property="og:description" content="افهم المباراة قبل بدايتها مع Forecast: إحصائيات وأخبار من مصادرها، مراجعة تكتيكية واحتمالات النتيجة، مع تقرير محفوظ في حسابك عند صدوره."/><meta property="og:url" content="https://korascoreai.com/forecast/"/><meta property="og:image" content="https://korascoreai.com/apple-touch-icon.png"/><meta property="og:image:width" content="1024"/><meta property="og:image:height" content="1024"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="توقعات كرة القدم بالذكاء الاصطناعي | KoraScoreAi Forecast"/><meta name="twitter:description" content="افهم المباراة قبل بدايتها مع Forecast: إحصائيات وأخبار من مصادرها، مراجعة تكتيكية واحتمالات النتيجة، مع تقرير محفوظ في حسابك عند صدوره."/><meta name="twitter:image" content="https://korascoreai.com/apple-touch-icon.png"/><script id="website-route-schema" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://korascoreai.com/#organization","name":"KoraScoreAi","url":"https://korascoreai.com/","logo":"https://korascoreai.com/apple-touch-icon.png"},{"@type":"WebSite","@id":"https://korascoreai.com/#website","name":"KoraScoreAi","url":"https://korascoreai.com/","publisher":{"@id":"https://korascoreai.com/#organization"},"inLanguage":["ar","en","fr","es"]},{"@type":"WebPage","@id":"https://korascoreai.com/forecast/#page","url":"https://korascoreai.com/forecast/","name":"توقعات كرة القدم بالذكاء الاصطناعي | KoraScoreAi Forecast","description":"افهم المباراة قبل بدايتها مع Forecast: إحصائيات وأخبار من مصادرها، مراجعة تكتيكية واحتمالات النتيجة، مع تقرير محفوظ في حسابك عند صدوره.","inLanguage":"ar","isPartOf":{"@id":"https://korascoreai.com/#website"}}]}</script><link rel="alternate" data-section-language="true" hreflang="ar" href="https://korascoreai.com/ar/forecast/"/><link rel="alternate" data-section-language="true" hreflang="en" href="https://korascoreai.com/en/forecast/"/><link rel="alternate" data-section-language="true" hreflang="fr" href="https://korascoreai.com/fr/forecast/"/><link rel="alternate" data-section-language="true" hreflang="es" href="https://korascoreai.com/es/forecast/"/><link rel="alternate" data-section-language="true" hreflang="x-default" href="https://korascoreai.com/forecast/"/>
@@ -24,20 +52,20 @@
       }
     </style>
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-korascoreai-v2.png"/><link rel="shortcut icon" href="/favicon.ico?v=2"/><link rel="apple-touch-icon" href="/apple-touch-icon.png"/><!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-08JT4K54RN"></script>
-<script>
+<script id="website-owner-analytics">
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-08JT4K54RN');
-</script><meta name="admaven-placement" content="BpjaErdwE"/><meta name="referrer" content="no-referrer"/><meta name="theme-color" content="#132B37"/></head>
+</script>
+<script id="website-deferred-analytics">(()=>{let started=false,timer;const events=['pointerdown','keydown','touchstart'];function start(){if(started)return;started=true;clearTimeout(timer);for(const event of events)window.removeEventListener(event,start);const script=document.createElement('script');script.async=true;script.src="https://www.googletagmanager.com/gtag/js?id=G-08JT4K54RN";document.head.appendChild(script)}function queue(){timer=setTimeout(()=>{'requestIdleCallback'in window?window.requestIdleCallback(start,{timeout:1000}):start()},5000)}for(const event of events)window.addEventListener(event,start,{once:true,passive:true});document.readyState==='complete'?queue():window.addEventListener('load',queue,{once:true})})();</script><meta name="admaven-placement" content="BpjaErdwE"/><meta name="referrer" content="no-referrer"/><meta name="theme-color" content="#132B37"/><link rel="preload" href="/assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Ionicons.b4eb097d35f44ed943676fd56f6bdc51.ttf" as="font" type="font/ttf" crossorigin="anonymous"/><style id="expo-generated-fonts">@font-face{font-family:"ionicons";src:url("/assets/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Ionicons.b4eb097d35f44ed943676fd56f6bdc51.ttf");font-display:swap}</style></head>
 
   <body>
     <!-- Use static rendering with Expo Router to support running without JavaScript. -->
     <noscript><p>تابع مواعيد المباريات، نتائج كرة القدم والبطولات في مكان واحد. اختر يوم المباراة أو افتح قسم مباشر لمعرفة اللقاءات الجارية.</p></noscript>
     <!-- The root element for your Expo app. -->
     <div id="root"><main style="max-width:1000px;margin:auto;padding:24px;color:#fff;background:#163a43;overflow:auto"><h1>توقعات AI تُظهر الأسباب وراء الترجيح</h1><p>اقرأ ملف المباراة قبل طلب التوقع. يجمع Nexus Engine المعلومات، ويقود Oracle Core القراءة التكتيكية. عندما يصدر التقرير، تجد الاحتمالات والملخص في خزنة توقعاتك.</p><nav><a style="color:#a5ffdd" href="/ar/">مباريات اليوم، من الموعد إلى النتيجة</a> · <a style="color:#a5ffdd" href="/ar/live-scores/">النتائج المباشرة، وما وراء لوحة التسجيل</a> · <a style="color:#a5ffdd" href="/ar/leagues/">بطولتك المفضلة، في مكان واحد</a> · <a style="color:#a5ffdd" href="/ar/forecast/">توقعات AI تُظهر الأسباب وراء الترجيح</a> · <a style="color:#a5ffdd" href="/ar/insights/">Insights: آراء تُقرأ، وسجل نتائج يُراجع</a> · <a style="color:#a5ffdd" href="/ar/favorites/">كرة القدم التي تهمك، أقرب إليك</a> · <a style="color:#a5ffdd" href="/ar/football/">دليل متابعة مباريات اليوم</a></nav><nav aria-label="Language"><a style="color:#a5ffdd" lang="ar" hreflang="ar" href="/ar/forecast/">العربية</a> · <a style="color:#a5ffdd" lang="en" hreflang="en" href="/en/forecast/">English</a> · <a style="color:#a5ffdd" lang="fr" hreflang="fr" href="/fr/forecast/">Français</a> · <a style="color:#a5ffdd" lang="es" hreflang="es" href="/es/forecast/">Español</a></nav><p>افهم المباراة قبل بدايتها مع Forecast: إحصائيات وأخبار من مصادرها، مراجعة تكتيكية واحتمالات النتيجة، مع تقرير محفوظ في حسابك عند صدوره.</p><section><h2>Forecast &amp; Insights</h2><p>إحصائيات وأخبار المباراة، في قراءة واحدة. Nexus يجمع الأدلة، وOracle يراجع السيناريو. تقاريرك محفوظة، لتعود إليها متى أردت.</p><nav><a style="color:#a5ffdd" href="/ar/ai-football-forecast/">توقعات كرة القدم بالذكاء الاصطناعي: افهم المباراة قبل بدايتها</a> · <a style="color:#a5ffdd" href="/ar/how-football-forecast-works/">كيف يعمل تحليل مباريات كرة القدم بالذكاء الاصطناعي؟</a> · <a style="color:#a5ffdd" href="/ar/football-win-probabilities/">احتمالات الفوز في كرة القدم ومعنى 1X2: دليل مبسط</a> · <a style="color:#a5ffdd" href="/ar/guides/expected-goals-xg/">ما هو xG؟ شرح الأهداف المتوقعة في كرة القدم</a> · <a style="color:#a5ffdd" href="/ar/football-match-insights/">تحليل مباريات كرة القدم: كيف تقرأ آراء المحللين في Insights؟</a> · <a style="color:#a5ffdd" href="/ar/forecast-insights-coins/">عملات KoraScoreAi: افتح Forecast وInsights بمحفظة واحدة</a></nav></section></main></div>
-  <script src="/_expo/static/js/web/entry-c81f93423e4babff84cb7583f9f157ff.js" defer></script>
+  <script src="/_expo/static/js/web/entry-11eb58caf0dae8129572289dab3d7bd0.js" defer></script>
 </body>
 </html>
