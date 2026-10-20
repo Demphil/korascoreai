@@ -1,0 +1,3 @@
+__d(function(g,r,i,a,m,e,d){"use strict";Object.defineProperty(e,'__esModule',{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return u}});var t=r(d[0]),n=r(d[1]);function u(){return(0,n.jsx)(t.GoogleAccessScreen,{entry:!0})}},787,[1378,6]);
+//# sourceMappingURL=/_expo/static/js/web/welcome-1907fdc8e984a12e42ca816092534ff8.js.map
+//# debugId=1f6d9656-63ee-4141-86c0-74edd84699e3
