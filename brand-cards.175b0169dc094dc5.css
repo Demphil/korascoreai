@@ -1,0 +1,54 @@
+/* Shared with src/brand.ts and the approved Forecast Vault cards. */
+:root {
+  --brand-card-surface: rgba(42,74,82,.74);
+  --brand-card-border: rgba(189,223,213,.40);
+  --brand-card-green-border: rgba(102,230,180,.55);
+  --brand-card-red-border: rgba(255,139,160,.55);
+  --brand-card-wash: linear-gradient(135deg,rgba(39,154,115,.30),rgba(60,91,104,.12),rgba(201,62,85,.27));
+  --brand-card-rail: linear-gradient(90deg,#23BE89,#B3C0B5,#E94968);
+}
+.feature-intro, .feature-match-card, .feature-insight-card,
+.website-paypal-pack, .website-paypal-order, .website-insight-unlock,
+.forecast-promo, .electronic-screen, .benefit, .related a,
+body > main > article, body > main > section, body > main > .reading > section {
+  position: relative;
+  background: var(--brand-card-wash), var(--brand-card-surface);
+  border: 1px solid var(--brand-card-border);
+  border-left-color: var(--brand-card-green-border);
+  border-right-color: var(--brand-card-red-border);
+  border-radius: 19px;
+}
+.feature-intro::after, .feature-match-card::after, .feature-insight-card::after,
+.feature-insight-card[data-entrance]::after,
+.website-paypal-pack::after, .website-paypal-order::after, .website-insight-unlock::after,
+.forecast-promo::after, .electronic-screen::after, .benefit::after, .related a::after,
+body > main > article::after, body > main > section::after, body > main > .reading > section::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  border: 0;
+  border-top-left-radius: 19px;
+  border-top-right-radius: 19px;
+  background: var(--brand-card-rail);
+  pointer-events: none;
+  animation: none;
+}
+.feature-intro-footer, .feature-disclaimer, .website-unlock-amounts > div {
+  background: rgba(93,203,162,.08);
+}
+.feature-match-cta, .website-unlock-primary {
+  background: rgba(169,38,66,.88);
+  border: 1px solid rgba(255,166,183,.55);
+  color: #fff5f7;
+}
+.feature-match-card:hover, .feature-insight-card:hover,
+.website-paypal-pack:hover:not(:disabled), .related a:hover {
+  border-left-color: #9bf3d0;
+  border-right-color: #ff9daa;
+}
+.feature-match-card:focus-visible, .feature-insight-card:focus-visible,
+.website-paypal-pack:focus-visible, .related a:focus-visible {
+  outline: 3px solid #ffe49b;
+  outline-offset: 3px;
+}
