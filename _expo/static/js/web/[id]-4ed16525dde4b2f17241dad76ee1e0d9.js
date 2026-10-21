@@ -1,0 +1,3 @@
+__d(function(g,r,i,a,m,e,d){"use strict";Object.defineProperty(e,'__esModule',{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t}});var t=(0,r(d[0]).createDeferredRoute)(()=>r(d[2])(d[1],d.paths).then(t=>({default:t.ForecastMatchScreen})))},767,{"0":886,"1":887,"2":10,"paths":{"887":"/_expo/static/js/web/capsule-7d26d6625165f4090f975c68e93a945c.js"}});
+//# sourceMappingURL=/_expo/static/js/web/[id]-4ed16525dde4b2f17241dad76ee1e0d9.js.map
+//# debugId=9f3a18d5-f191-45a2-a70c-c9f52d25fd8f
