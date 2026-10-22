@@ -1,0 +1,3 @@
+__d(function(g,r,i,a,m,e,d){"use strict";Object.defineProperty(e,'__esModule',{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t}});var t=(0,r(d[0]).createDeferredRoute)(()=>r(d[2])(d[1],d.paths).then(t=>({default:t.LiveScores})))},757,{"0":886,"1":887,"2":10,"paths":{"887":"/_expo/static/js/web/capsule-a01b0d3d18b830c0ae4fd10793f4e16f.js"}});
+//# sourceMappingURL=/_expo/static/js/web/live-scores-5562877b450f19aa7d7b958d593bcf44.js.map
+//# debugId=3b82b16d-3468-48a1-9790-87db4887fcc2
