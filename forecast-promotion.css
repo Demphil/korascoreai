@@ -102,3 +102,20 @@ body:has([aria-modal="true"]) .forecast-promo-host{visibility:hidden;pointer-eve
 .website-section-links{padding:22px 0 14px;color:#d4e9e3;font:13px/1.8 system-ui,Arial,sans-serif}.website-section-links h2{font-size:18px;margin:0 0 8px;color:#f1fff8}.website-section-links p{margin:0 0 12px}.website-section-links nav{display:flex;gap:8px 15px;flex-wrap:wrap}.website-section-links a{display:inline-flex;align-items:center;min-height:44px;min-width:44px;padding:6px 4px;color:#b2ffda;text-underline-offset:4px}.website-section-links a:focus-visible{outline:2px solid #ffe399;outline-offset:3px}
 
 .website-section-introduction{padding:18px;margin:8px 0 14px;border:1px solid #83e9c259;border-right-color:#ed618369;border-radius:18px;background:linear-gradient(120deg,#123e42b8,#262d42cc);color:#e6faf1;font-family:system-ui,Arial,sans-serif}.website-section-introduction h1{margin:0 0 8px;font-size:22px;line-height:1.4}.website-section-introduction p{margin:0;font-size:13px;line-height:1.8;color:#cedfdf}
+
+/* Keep general app promotion compact; the explicit Forecast access offer is separate. */
+.forecast-promo-host{top:auto!important;left:auto!important;right:16px!important;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:min(600px,calc(100vw - 32px));max-width:600px;margin:0;perspective:none;transform:none!important;translate:none!important;animation:none!important;z-index:40}
+.forecast-promo-host[hidden]{display:none!important}
+.forecast-promo-host .forecast-promo{display:grid;grid-template-columns:minmax(0,1fr) minmax(250px,auto) 44px;grid-template-rows:minmax(44px,auto);align-items:center;gap:10px;padding:10px!important;border-radius:15px;max-height:none;overflow:visible;animation:none!important;transform:none!important;translate:none!important;box-shadow:0 8px 24px #061b2a40,inset 0 1px 0 #caffef50}
+.forecast-promo-host .forecast-promo-kicker,.forecast-promo-host .forecast-promo-screen,.forecast-promo-host .forecast-promo-copy,.forecast-promo-host .forecast-promo-availability{display:none!important}
+.forecast-promo-host .forecast-promo h2{grid-column:1;grid-row:1;margin:0;padding:0!important;min-width:0;font-size:14px;line-height:1.3;letter-spacing:0;text-shadow:none;overflow-wrap:break-word}
+.forecast-promo-host .forecast-promo h2:after{display:none}
+.forecast-promo-host .forecast-promo-close{position:static;grid-column:3;grid-row:1;justify-self:end;align-self:center;inset:auto!important;width:44px;height:44px;min-width:44px;min-height:44px;padding:0;flex-shrink:0;font-size:24px;border-radius:11px}
+.forecast-promo-host .forecast-promo-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-column:2;grid-row:1;align-items:stretch;gap:8px;margin:0;min-width:0}
+.forecast-promo-host .forecast-promo-cta,.forecast-promo-host .forecast-promo-more{box-sizing:border-box;min-width:0;min-height:44px;padding:6px 8px;border-radius:10px;font-size:11px;line-height:1.2;white-space:normal;overflow-wrap:break-word;transform:none!important;transition:none}
+.forecast-promo-host .forecast-promo-more{border:1px solid #75dfbd70;background:#102f3c99;text-decoration:none;color:#d7fff3}
+.forecast-promo-host[data-transit=true]{z-index:40!important;pointer-events:none}
+.forecast-promo-host[data-transit=true] .forecast-promo{pointer-events:auto}
+.forecast-promo-host[data-static-page]{bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+@media(max-width:1439px){.forecast-promo-host{bottom:calc(92px + env(safe-area-inset-bottom,0px))}}
+@media(max-width:700px){.forecast-promo-host{left:12px!important;right:12px!important;width:auto;max-width:480px;margin-inline:auto}.forecast-promo-host .forecast-promo{grid-template-columns:minmax(0,1fr) 44px;grid-template-rows:minmax(44px,auto) minmax(44px,auto);gap:4px 8px;padding:8px!important}.forecast-promo-host .forecast-promo h2{font-size:13px;grid-column:1;grid-row:1}.forecast-promo-host .forecast-promo-close{grid-column:2;grid-row:1}.forecast-promo-host .forecast-promo-actions{grid-column:1/-1;grid-row:2}.forecast-promo-host .forecast-promo-cta,.forecast-promo-host .forecast-promo-more{font-size:11px}}
