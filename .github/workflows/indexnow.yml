@@ -1,0 +1,60 @@
+name: IndexNow after website publication
+
+on:
+  workflow_run:
+    workflows: [pages build and deployment]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      verify_url:
+        description: Optional single canonical public URL for initial verification
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow-korascoreai
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_repository.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: main
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .indexnow-state
+          key: indexnow-v1-${{ github.repository_id }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: indexnow-v1-${{ github.repository_id }}-
+      - name: Verify published content and send one bounded batch
+        env:
+          VERIFY_URL: ${{ inputs.verify_url }}
+        shell: bash
+        run: |
+          args=(--root . --state .indexnow-state/state.json --receipt .indexnow-receipts/result.json)
+          if [ -n "$VERIFY_URL" ]; then args+=(--verify-url "$VERIFY_URL"); fi
+          python3 _ops/indexnow/indexnow.py "${args[@]}"
+      - uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        if: always()
+        with:
+          path: .indexnow-state
+          key: indexnow-v1-${{ github.repository_id }}-${{ github.run_id }}-${{ github.run_attempt }}
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: indexnow-receipt-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .indexnow-receipts/result.json
+          retention-days: 30
+          if-no-files-found: warn
