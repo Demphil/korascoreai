@@ -4,7 +4,7 @@ export const PROMOTION_FIRST_MS = 1800;
 const DISMISS_KEY = 'forecast-promotion-dismissed-red-green';
 /** Viewport changes and hidden tabs cancel timers; no queued bursts on return. */
 export function mountPromotion(setVisible, win, doc) {
-    const wide = win.matchMedia('(min-width: 1440px)');
+    const wide = win.matchMedia('(min-width: 1100px)');
     let timer;
     let stopped = false;
     let dismissed = false;

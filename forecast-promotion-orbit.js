@@ -10,7 +10,7 @@ export function orbitFrames(distance, lift, fromRight) {
     });
 }
 export function mountOrbit(host, win, doc) {
-    const wide = win.matchMedia('(min-width: 1440px)');
+    const wide = win.matchMedia('(min-width: 1100px)');
     const reduced = win.matchMedia('(prefers-reduced-motion: reduce)');
     let timer;
     let animation;
