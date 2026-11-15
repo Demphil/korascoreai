@@ -1,0 +1,17 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.korascoreai.app",
+      "sha256_cert_fingerprints": [
+        "D2:F0:2B:57:D5:17:04:11:F9:66:62:86:58:79:1D:40:33:41:1B:7C:65:EB:76:9C:16:1B:5C:67:7A:DD:06:B0",
+        "26:D3:1A:A3:D5:5F:F9:67:6C:D8:6B:00:CB:AA:93:1E:F6:8E:40:6C:95:5C:68:81:3B:14:3E:46:FD:5A:4C:EA",
+        "D3:27:DF:05:3D:2B:2A:54:AA:9E:D8:2C:66:88:45:02:C1:45:AE:2F:4D:9E:FC:45:15:A1:49:9F:F0:6C:FA:A2",
+        "B5:3A:C0:6F:3F:F6:1B:BF:B2:BC:32:51:C6:DE:6E:E7:A1:A1:46:E5:25:09:36:F5:82:F4:FF:E2:0E:69:D4:B7"
+      ]
+    }
+  }
+]
