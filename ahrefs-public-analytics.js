@@ -5,6 +5,7 @@ const pathFor=function publicAnalyticsPath(value) {
   try { url=new URL(value); } catch { return null; }
   if(url.origin!=='https://korascoreai.com')return null;
   const path=url.pathname.replace(/\/+$/,'')||'/';
+  if(/^\/(?:en|ar|fr|es)\/app$/.test(path))return path+'/';
   const publicRoute=/^\/(?:(?:en|ar|fr|es)(?:\/|$))?(?:(?:live-scores|leagues|forecast|insights|favorites|football|matches|ai-football-forecast|how-football-forecast-works|football-win-probabilities|football-match-insights|forecast-insights-coins)|guides\/expected-goals-xg|match\/[1-9]\d{0,9})?$/;
   return publicRoute.test(path)?(path==='/'?path:path+'/'):null;
 };
