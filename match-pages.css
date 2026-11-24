@@ -16,6 +16,23 @@ body{min-height:100vh;isolation:isolate;background:#132B37}
 .match-card-heading{display:flex;align-items:center;gap:12px;min-width:0}.match-card-heading>a{min-width:0;overflow-wrap:anywhere}.match-card-crests{display:flex;align-items:center;gap:6px;flex:0 0 auto;direction:ltr}.crest.crest-small{width:32px;height:32px;flex:0 0 32px;margin:0;object-fit:contain}.history-team{display:flex;align-items:center;gap:10px;min-width:0}.history-team bdi{overflow-wrap:anywhere}.match-list .meta{line-height:1.5}.match-list .record-clock{margin-top:4px}
 @media(max-width:640px){.brand img{width:156px}.site-header{display:flex;flex-wrap:wrap;gap:12px}.site-header nav{margin-top:0}.match-card-heading{gap:10px}.match-card-crests{gap:4px}.match-card-crests .crest-small{width:28px;height:28px;flex-basis:28px}.competition-crest{width:28px;height:28px;flex-basis:28px}}
 
+/* Keep the archive in the same reading column as the interactive match page. */
+body > .site-header, #match-content, body > .site-footer {
+  width: min(55rem, calc(100% - clamp(1.25rem, 4vw, 2.5rem)));
+}
+
+#match-content .panel { padding: clamp(.875rem, 2vw, 1.125rem); margin-bottom: 1rem; }
+#match-content .breadcrumbs { margin-block: .875rem; }
+#match-content .hero h1 { font-size: clamp(1.5rem, 1.15rem + 1.3vw, 2.25rem); margin-bottom: .625rem; }
+#match-content .match-teams { max-width: 37rem; margin: 1rem auto; gap: clamp(.5rem, 2vw, 1.25rem); }
+#match-content .match-teams .crest, #match-content .match-teams .crest-fallback {
+  width: clamp(2.5rem, 7vw, 3.75rem);
+  height: auto;
+  aspect-ratio: 1;
+}
+#match-content .match-teams .score { font-size: clamp(1.75rem, 1.3rem + 2vw, 2.625rem); }
+#match-content .score-details { margin-bottom: .875rem; }
+
 /* Progressive archive controls preserve the crawlable match list without JavaScript. */
 [data-archive-filters]{display:grid;grid-template-columns:minmax(180px,2fr) repeat(2,minmax(140px,1fr)) auto;align-items:end;gap:12px;margin-block:20px;padding:16px;border:1px solid var(--line);border-inline-start-color:rgba(102,230,180,.55);border-inline-end-color:rgba(255,139,160,.55);border-radius:16px;background:rgba(42,74,82,.45)}
 [data-archive-filters] label{display:flex;flex-direction:column;gap:6px;min-width:0;color:var(--muted);font-size:.82rem;font-weight:650}
