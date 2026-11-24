@@ -7,15 +7,24 @@
   const endpoint = new URL('https://api.korascoreai.com/functions/v1/public-competition-fixtures');
   endpoint.searchParams.set('league', panel.dataset.competitionFixtures);
 
-  function matchRow(fixture, group, checkedLabel) {
+  function matchTime(timestamp) {
+    const time = document.createElement('time');
+    time.dateTime = timestamp;
+    time.textContent = formatter.format(new Date(timestamp));
+    return time;
+  }
+
+  function matchRow(fixture, group, { checkedLabel, pendingLabel }) {
+    const kickoff = Date.parse(fixture?.kickoff);
     if (!Number.isSafeInteger(fixture?.id) || fixture.id < 1 || typeof fixture.home !== 'string' ||
-        typeof fixture.away !== 'string' || !Number.isFinite(Date.parse(fixture.kickoff))) return null;
+        typeof fixture.away !== 'string' || !Number.isFinite(kickoff)) return null;
+    const today = group === 'today';
     const inPlay = group === 'inPlay';
-    const timestamp = inPlay ? fixture.checkedAt : fixture.kickoff;
-    if (inPlay) {
-      const age = Date.now() - Date.parse(timestamp);
-      if (!(age >= 0 && age <= 35 * 60_000)) return null;
-    }
+    const now = Date.now();
+    const checkAge = now - Date.parse(fixture.checkedAt);
+    if (inPlay && !(checkAge >= 0 && checkAge <= 35 * 60_000)) return null;
+    const hasScore = Number.isInteger(fixture.score?.home) && Number.isInteger(fixture.score?.away);
+    if ((inPlay || group === 'results') && !hasScore) return null;
     const row = document.createElement('li');
     const heading = document.createElement('div');
     const link = document.createElement('a');
@@ -26,19 +35,22 @@
     away.textContent = fixture.away;
     link.append(home, ' – ', away);
     heading.append(link);
-    if (group !== 'upcoming') {
-      if (!Number.isInteger(fixture.score?.home) || !Number.isInteger(fixture.score?.away)) return null;
+    if (group !== 'upcoming' && hasScore) {
       const result = document.createElement('strong');
       result.dir = 'ltr';
       result.textContent = `${fixture.score.home}–${fixture.score.away}`;
       heading.append(result);
     }
     const label = document.createElement('small');
-    const date = document.createElement('time');
-    date.dateTime = timestamp;
-    date.textContent = formatter.format(new Date(timestamp));
-    if (inPlay) label.append(`${checkedLabel} · `);
-    label.append(date);
+    if (inPlay) {
+      label.append(`${checkedLabel} · `, matchTime(fixture.checkedAt));
+    } else {
+      label.append(matchTime(fixture.kickoff));
+      if (today && (kickoff <= now || hasScore) && checkAge >= 0) {
+        label.append(` · ${checkedLabel} `, matchTime(fixture.checkedAt));
+      }
+      if (today && kickoff <= now && fixture.status === 'NS') label.append(` · ${pendingLabel}`);
+    }
     row.append(heading, label);
     return row;
   }
@@ -47,10 +59,19 @@
     const response = await fetch(endpoint, { credentials: 'omit', signal: AbortSignal.timeout(5000) });
     if (!response.ok) return;
     const data = await response.json();
-    for (const [key, marker] of [['inPlay', 'in-play'], ['upcoming', 'upcoming'], ['results', 'results']]) {
+    const todayIds = new Set();
+    for (const [key, marker] of [['today', 'today'], ['inPlay', 'in-play'], ['upcoming', 'upcoming'], ['results', 'results']]) {
       if (!Array.isArray(data?.[key])) continue;
       const group = panel.querySelector(`[data-competition-${marker}]`);
-      const rows = data[key].slice(0, 8).map(fixture => matchRow(fixture, key, group.dataset.checkedLabel)).filter(Boolean);
+      if (!group) continue;
+      const rows = [];
+      for (const fixture of data[key].slice(0, key === 'today' ? 32 : 8)) {
+        if (todayIds.has(fixture?.id)) continue;
+        const row = matchRow(fixture, key, group.dataset);
+        if (!row) continue;
+        rows.push(row);
+        if (key === 'today') todayIds.add(fixture.id);
+      }
       if (!rows.length) continue;
       group.querySelector('ul').append(...rows);
       group.hidden = false;
