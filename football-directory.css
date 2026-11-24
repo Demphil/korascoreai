@@ -1,0 +1,25 @@
+.directory-groups,.lineup-teams{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.directory-groups details,.lineup-teams>section{min-width:0;padding:15px;border:1px solid var(--line);border-radius:14px;background:rgba(103,225,184,.045)}
+.directory-groups summary{cursor:pointer;font-weight:750;color:var(--green);padding:7px 0}
+.directory-groups summary bdi{color:var(--muted);margin-inline-start:6px;font-size:.85em}
+.directory-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;list-style:none;margin:0;padding:0}
+.directory-list li{min-width:0;padding:4px 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere}
+.directory-groups .directory-list{max-height:260px;overflow:auto}
+.directory-identity{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.directory-identity .crest,.directory-identity .crest-fallback{flex:none;margin:0}
+.directory-identity .competition-crest{width:54px;height:54px}
+.directory-identity h1{margin:0;overflow-wrap:anywhere}
+.directory-hero h1{max-width:32ch}
+.lineup-teams h4{margin:15px 0 5px;font-size:.9rem;color:var(--green)}
+.lineup-names{margin:0;padding:0;list-style:none}
+.lineup-names li{display:grid;grid-template-columns:32px minmax(0,1fr);gap:8px;padding:8px 0;border-top:1px solid var(--line)}
+.lineup-names li>div{min-width:0;overflow-wrap:anywhere}
+.shirt-number{display:grid;place-items:start center;border-radius:7px;background:rgba(103,225,184,.09);font-variant-numeric:tabular-nums}
+.player-position,.lineup-metrics{color:var(--muted);font-size:.8rem}
+.player-position{margin-inline-start:5px}
+.lineup-metrics{display:flex;flex-wrap:wrap;gap:2px 12px}
+@media(max-width:600px){
+  .directory-groups,.lineup-teams{grid-template-columns:minmax(0,1fr);gap:12px}
+  .directory-identity{gap:10px}
+  .directory-identity .crest,.directory-identity .crest-fallback{width:52px;height:52px}
+}

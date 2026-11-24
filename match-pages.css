@@ -15,3 +15,25 @@ body{min-height:100vh;isolation:isolate;background:#132B37}
 .competition-name{display:flex;align-items:center;flex-wrap:wrap;gap:8px}.competition-crest{display:inline-block;width:32px;height:32px;flex:0 0 32px;object-fit:contain;vertical-align:middle}.eyebrow.competition-name{min-height:32px}.facts .competition-crest,.match-list .competition-crest{width:26px;height:26px;flex-basis:26px}
 .match-card-heading{display:flex;align-items:center;gap:12px;min-width:0}.match-card-heading>a{min-width:0;overflow-wrap:anywhere}.match-card-crests{display:flex;align-items:center;gap:6px;flex:0 0 auto;direction:ltr}.crest.crest-small{width:32px;height:32px;flex:0 0 32px;margin:0;object-fit:contain}.history-team{display:flex;align-items:center;gap:10px;min-width:0}.history-team bdi{overflow-wrap:anywhere}.match-list .meta{line-height:1.5}.match-list .record-clock{margin-top:4px}
 @media(max-width:640px){.brand img{width:156px}.site-header{display:flex;flex-wrap:wrap;gap:12px}.site-header nav{margin-top:0}.match-card-heading{gap:10px}.match-card-crests{gap:4px}.match-card-crests .crest-small{width:28px;height:28px;flex-basis:28px}.competition-crest{width:28px;height:28px;flex-basis:28px}}
+
+/* Progressive archive controls preserve the crawlable match list without JavaScript. */
+[data-archive-filters]{display:grid;grid-template-columns:minmax(180px,2fr) repeat(2,minmax(140px,1fr)) auto;align-items:end;gap:12px;margin-block:20px;padding:16px;border:1px solid var(--line);border-inline-start-color:rgba(102,230,180,.55);border-inline-end-color:rgba(255,139,160,.55);border-radius:16px;background:rgba(42,74,82,.45)}
+[data-archive-filters] label{display:flex;flex-direction:column;gap:6px;min-width:0;color:var(--muted);font-size:.82rem;font-weight:650}
+[data-archive-filters] input,[data-archive-filters] select,[data-archive-filters] button{min-width:0;min-height:46px;border:1px solid var(--line);border-radius:11px;font:inherit}
+[data-archive-filters] input,[data-archive-filters] select{width:100%;padding:10px 12px;background:rgba(18,43,52,.85);color:var(--ink)}
+[data-archive-filters] input::placeholder{color:var(--muted);opacity:1}
+[data-archive-filters] select option{background:#17323b;color:var(--ink)}
+[data-archive-filters] button{padding:10px 16px;background:rgba(54,84,91,.66);color:var(--ink);font-weight:750;cursor:pointer}
+[data-archive-filters] button:hover{border-color:var(--green);background:rgba(20,98,85,.65)}
+[data-archive-filters] input:focus-visible,[data-archive-filters] select:focus-visible,[data-archive-filters] button:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+[data-archive-count]{display:block;margin-block:12px 20px;color:var(--muted);font-size:.9rem;font-variant-numeric:tabular-nums}
+[data-archive-count] span{color:var(--ink);font-weight:750}
+[data-archive-empty]{padding:18px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);background:rgba(42,74,82,.3)}
+@media(max-width:800px){[data-archive-filters]{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:440px){[data-archive-filters]{grid-template-columns:minmax(0,1fr);padding:12px;gap:10px}[data-archive-filters] button{width:100%}}
+
+.meeting-totals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0}
+.meeting-totals>div{min-width:0;padding:14px;border:1px solid var(--line);border-radius:13px;background:rgba(93,203,162,.08)}
+.meeting-totals dt{color:var(--muted);font-size:.82rem;line-height:1.5;overflow-wrap:anywhere}
+.meeting-totals dd{margin:6px 0 0;color:var(--ink);font-size:1.75rem;line-height:1.2;font-weight:800;font-variant-numeric:tabular-nums}
+@media(max-width:440px){.meeting-totals{grid-template-columns:minmax(0,1fr);gap:9px}.meeting-totals>div{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;padding:12px}.meeting-totals dd{margin:0;font-size:1.5rem}}
