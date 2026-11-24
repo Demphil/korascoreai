@@ -14,6 +14,17 @@
     return time;
   }
 
+  function openLigaCredit() {
+    const credit = document.createElement('span');
+    credit.dataset.competitionSource = 'openligadb';
+    const source = document.createElement('a');
+    source.href = 'https://www.openligadb.de/en/license';
+    source.dir = 'ltr';
+    source.textContent = 'OpenLigaDB (ODbL 1.0)';
+    credit.append(` · ${panel.dataset.openligaSourceLabel} `, source);
+    return credit;
+  }
+
   function matchRow(fixture, group, { checkedLabel, pendingLabel }) {
     const kickoff = Date.parse(fixture?.kickoff);
     if (!Number.isSafeInteger(fixture?.id) || fixture.id < 1 || typeof fixture.home !== 'string' ||
@@ -50,6 +61,9 @@
         label.append(` · ${checkedLabel} `, matchTime(fixture.checkedAt));
       }
       if (today && kickoff <= now && fixture.status === 'NS') label.append(` · ${pendingLabel}`);
+    }
+    if (hasScore && (today || group === 'results') && fixture.source === 'openligadb' && panel.dataset.openligaSourceLabel) {
+      label.append(openLigaCredit());
     }
     row.append(heading, label);
     return row;
