@@ -69,10 +69,49 @@
     return row;
   }
 
+  function renderStandings(data) {
+    const section = panel.querySelector('[data-competition-standings]');
+    const checkedAt = Date.parse(data?.checkedAt);
+    if (!section || !Number.isFinite(checkedAt) || checkedAt > Date.now() ||
+        !Array.isArray(data.rows) || data.rows.length !== 16) return;
+    const ranks = new Set();
+    const clubs = new Set();
+    for (const item of data.rows) {
+      const { rank, team, played, points } = item ?? {};
+      if (!Number.isInteger(rank) || rank < 1 || rank > 16 || ranks.has(rank) ||
+          !Number.isSafeInteger(team?.id) || team.id < 1 || clubs.has(team.id) ||
+          typeof team.name !== 'string' || !team.name.trim() || team.name.length > 160 ||
+          !Number.isInteger(played) || played < 0 || !Number.isInteger(points)) return;
+      ranks.add(rank);
+      clubs.add(team.id);
+    }
+    const rows = [...data.rows].sort((a, b) => a.rank - b.rank).map(({ rank, team, played, points }) => {
+      const row = document.createElement('tr');
+      for (const [value, club] of [[rank, false], [team.name, true], [played, false], [points, false]]) {
+        const cell = document.createElement(club ? 'th' : 'td');
+        if (club) {
+          cell.scope = 'row';
+          const label = document.createElement('bdi');
+          label.textContent = value;
+          cell.append(label);
+        } else {
+          cell.textContent = String(value);
+        }
+        row.append(cell);
+      }
+      return row;
+    });
+    section.querySelector('tbody').replaceChildren(...rows);
+    section.querySelector('time').replaceWith(matchTime(data.checkedAt));
+    section.hidden = false;
+    panel.hidden = false;
+  }
+
   async function loadMatches() {
     const response = await fetch(endpoint, { credentials: 'omit', signal: AbortSignal.timeout(5000) });
     if (!response.ok) return;
     const data = await response.json();
+    renderStandings(data?.standings);
     const todayIds = new Set();
     for (const [key, marker] of [['today', 'today'], ['inPlay', 'in-play'], ['upcoming', 'upcoming'], ['results', 'results']]) {
       if (!Array.isArray(data?.[key])) continue;
